@@ -4,6 +4,7 @@ import { Vue } from './assets/public/Script'
 import App from './App'
 import router from './router'
 import store from './store/index'
+import './assets/public/StyleSheet/main.css'
 
 /* eslint-disable no-new */
 new Vue({
