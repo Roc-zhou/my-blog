@@ -1,6 +1,6 @@
 <template>
   <div class="articleList">
-    <div class="articleList_list" v-for="x in 5">
+    <div class="articleList_list" v-for="x in 15" :class="x > 5 ? 'animates ani' : ''" data-animation="fadeInUp">
       <h1>聊聊中国的通信行业：从“七国八制”到“中华”脊梁</h1>
       <div class="justify-start">
         <p class="timeC justify-start items-center">2019-05-25</p>
@@ -31,12 +31,18 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    this.isScroll.init(".animates");
+  },
   methods: {
     changeone() {}
   }
 };
 </script>
 <style scoped>
+.ani {
+  opacity: 0;
+}
 .articleList_list {
   padding: 10px 20px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
