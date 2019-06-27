@@ -26,7 +26,7 @@ const instance = axios.create({
 instance.defaults.headers.post['Content-Type'] = 'application/json';
 // 添加请求拦截器
 instance.interceptors.request.use((config) => {
-  if (config.method == 'get') {
+  if (config.method == 'get' || config.method == 'delete') {
     config.params = {
       ...config.params,
       timestamp: (new Date()).valueOf() /*解决IE - GET请求缓存问题*/
