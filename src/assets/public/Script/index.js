@@ -2,8 +2,8 @@ import Vue from 'vue'
 import 'rz-ui'
 import { $api, $http } from './axios'
 import '../StyleSheet/animate.css'
-import isScroll from './isScroll'
-import rz from 'rz-methods'
+import $isScroll from './isScroll'
+import { _encrypt, _decrypt } from 'rz-methods'
 
 Vue.config.productionTip = false
 
@@ -11,8 +11,7 @@ Vue.config.productionTip = false
 Object.assign(Vue.prototype, {
   $api,
   $http,
-  isScroll,
-  rz,
+  $isScroll,
   $goto(obj, attr, boolean = true) { // 应用内/外跳转
     const {
       $data,

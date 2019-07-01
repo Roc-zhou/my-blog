@@ -32,7 +32,7 @@ export default {
     return {};
   },
   mounted() {
-    this.isScroll.init(".animates");
+    this.$isScroll.init(".animates");
   },
   methods: {
     changeone() {}

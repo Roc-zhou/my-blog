@@ -25,6 +25,12 @@ export default [{
           component: () =>
             import('./articleList'),
 
+        },
+        {
+          path: 'info/:id',
+          name: 'info',
+          component: () =>
+            import('./articleInfo'),
         }
       ]
     }
