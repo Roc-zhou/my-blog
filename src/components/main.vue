@@ -14,8 +14,15 @@
     <div class="con">
       <router-view></router-view>
     </div>
-    <div class="footer justify-center items-center">
+    <div class="footer justify-center items-center flex-column">
       <p>© 2018 - 2019 @AB+ 版权所有</p>
+      <div class="justify-center yq">
+        <p>友情链接：</p>
+        <p>
+          <a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" title="百度">百度</a>
+          <a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" title="百度">百度</a>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -65,9 +72,9 @@ export default {
   width: 110px;
   color: #fff;
   font-size: 14px;
-  height: 100%;
+  height: 40px;
   text-align: center;
-  line-height: 80px;
+  line-height: 40px;
   margin-left: 10px;
 }
 .header_menu p:hover {
@@ -85,5 +92,16 @@ export default {
 }
 .con {
   min-height: calc(100vh - 70px);
+}
+.yq {
+  margin-top: 10px;
+}
+.yq a {
+  color: inherit;
+  margin-right: 10px;
+  text-decoration: none;
+}
+.yq a:hover {
+  color: #fff;
 }
 </style>
