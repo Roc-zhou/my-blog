@@ -44,5 +44,6 @@ export default {
 .about_me ul {
   margin: 0 20px;
   font-size: 14px;
+  background: #000;
 }
 </style>
