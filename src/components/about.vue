@@ -1,6 +1,6 @@
 <template>
   <div class='about'>
-    这是关于我
+    这是关于我测试下提交代码
   </div>
 </template>
 
