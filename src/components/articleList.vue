@@ -2,14 +2,14 @@
   <div class="articleList">
     <div class="articleList_list" v-for="x in 10">
       <!-- :class="x > 5 ? 'animates ani' : ''" data-animation="fadeInUp" -->
-      <h1>聊聊中国的通信行业：从“七国八制”到“中华”脊梁</h1>
+      <h1 @click.stop="$goto('/article/list/1')">聊聊中国的通信行业：从“七国八制”到“中华”脊梁</h1>
       <div class="justify-start">
         <p class="timeC justify-start items-center">2019-05-25</p>
         <p class="tagC justify-start items-center">Html</p>
       </div>
       <p class="abs">致敬中国通信行业，致敬华为、中兴</p>
       <p class="read_btn justify-start">
-        <span class="cursor-pointer">阅读更多</span>
+        <span class="cursor-pointer" @click.stop="$goto('/article/list/1')">阅读更多</span>
       </p>
     </div>
 

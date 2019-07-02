@@ -5,17 +5,15 @@
       <div class="justify-start meta items-center">
         <p class="items-center">
           <i class="date_icon"></i>
-          <span>2019-04-08 23:56:41</span>
+          <span>{{date}}</span>
         </p>
         <p class="items-center">
           <i class="eys_icon"></i>
-          <span>246次浏览</span>
+          <span>{{num}}次浏览</span>
         </p>
       </div>
     </header>
-    <div class="info_center">
-      这是内容
-    </div>
+    <div class="info_center" v-html="info"></div>
   </div>
 </template>
 
@@ -26,7 +24,11 @@ export default {
   },
   name: "articleInfo",
   data() {
-    return {};
+    return {
+      date:"2019-04-08 23:56:41",
+      num:123,
+      info:''
+    };
   }
 };
 </script>
