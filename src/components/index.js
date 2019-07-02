@@ -33,6 +33,12 @@ export default [{
             import('./articleInfo'),
         }
       ]
+    },
+    {
+      path: 'about',
+      name: 'about',
+      component: () =>
+        import('./about'),
     }
   ]
 }]

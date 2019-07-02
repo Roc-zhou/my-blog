@@ -2,7 +2,7 @@
   <div class="main">
     <div class="header items-center justify-center">
       <div class="header_con justify-between items-center">
-        <img src="../assets/public/Images/logo.png" alt>
+        <img src="../assets/public/Images/logo.png" alt />
         <div class="header_menu justify-center items-center">
           <p :class="menu === 1 ? 'selectd' : ''" @click.stop="$goto('/');menu=1">首页</p>
           <p :class="menu === 2 ? 'selectd' : ''" @click.stop="$goto('/article');menu=2">目录</p>
@@ -32,7 +32,14 @@ export default {
   beforeRouteEnter(to, from, next) {
     return next(vm => {
       const routerPath = vm.$route.path;
-      vm.menu = routerPath === "/" ? 1 : routerPath === "/article" ? 2 : 1;
+      vm.menu =
+        routerPath === "/"
+          ? 1
+          : routerPath === "/article"
+          ? 2
+          : routerPath === "/about"
+          ? 3
+          : 1;
     });
   },
   name: "home-main",
@@ -43,7 +50,7 @@ export default {
   },
   watch: {
     ["$route.path"](n, o) {
-      this.menu = n === "/" ? 1 : n === "/article" ? 2 : 1;
+      this.menu = n === "/" ? 1 : n === "/article" ? 2 : n === "/about" ? 3 : 1;
     }
   }
 };
@@ -51,6 +58,7 @@ export default {
 <style scoped>
 .main {
   background-color: #f4f4f4;
+  min-width: 1300px;
 }
 .header {
   height: 80px;
