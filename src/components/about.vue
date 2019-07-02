@@ -1,6 +1,6 @@
 <template>
   <div class='about'>
-    
+    这是关于我
   </div>
 </template>
 
