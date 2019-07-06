@@ -5,7 +5,7 @@
     <div class="home_bg">
       <div class="home_con_a justify-center flex-column items-center">
         <p class="animates" data-animation="fadeInLeft">@AB+</p>
-        <!-- <p class="animates" data-animation="fadeInRight">周海鹏的个人博客</p> -->
+        <p class="animates" data-animation="fadeInRight">周海鹏的个人博客</p>
         <p class="animates" data-animation="fadeInUp">每天收获小进步，积累起来就是大进步；每天收获小幸福，积攒起来便成大幸福。</p>
       </div>
     </div>
