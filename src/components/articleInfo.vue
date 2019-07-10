@@ -1,7 +1,7 @@
 <template>
   <div class="articleInfo">
     <header>
-      <h2>这是文章标题这是文章标题这是文章标题这是文章</h2>
+      <h2>{{articleTitle}}</h2>
       <div class="justify-start meta items-center">
         <p class="items-center">
           <i class="date_icon"></i>
@@ -13,11 +13,12 @@
         </p>
       </div>
     </header>
-    <div class="info_center" v-html="info"></div>
+    <div class="info_center markdown-body" v-html="info"></div>
   </div>
 </template>
 
 <script>
+import "mavon-editor/dist/css/index.css";
 export default {
   beforeRouteEnter(to, from, next) {
     return next(vm => {});
@@ -25,9 +26,10 @@ export default {
   name: "articleInfo",
   data() {
     return {
-      date:"2019-04-08 23:56:41",
-      num:123,
-      info:''
+      date: "2019-04-08 23:56:41",
+      num: 123,
+      articleTitle: "这是文章标题这是文章标题这是文章标题这是文章",
+      info: ""
     };
   }
 };
@@ -63,5 +65,8 @@ header h2 {
 }
 .info_center {
   margin: 20px 0 0 0;
+}
+.articleInfo >>> .markdown-body pre {
+  padding: 0;
 }
 </style>

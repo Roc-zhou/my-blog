@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import 'babel-polyfill'
 import 'rz-ui'
 import { $api, $http } from './axios'
 import '../StyleSheet/animate.css'
