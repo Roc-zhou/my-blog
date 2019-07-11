@@ -9,23 +9,13 @@
         <div>
           <span>分组：</span>
           <Select v-model="groupVal" placeholder="请选择" style="width:200px">
-            <Option
-              v-for="item in groupList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></Option>
+            <Option v-for="(i,index) in groupList" :key="index" :label="i.groupName" :value="i.id"></Option>
           </Select>
         </div>
         <div>
           <span>标签：</span>
           <Select v-model="tagVal" placeholder="请选择" style="width:200px">
-            <Option
-              v-for="item in tagList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></Option>
+            <Option v-for="(i,index) in tagList" :key="index" :label="i.targeName" :value="i.id"></Option>
           </Select>
         </div>
       </div>
@@ -52,7 +42,22 @@ import "mavon-editor/dist/css/index.css";
 import { Button, Select, Input, Option, Message } from "element-ui";
 export default {
   beforeRouteEnter(to, from, next) {
-    return next(vm => {});
+    return next(vm => {
+      vm.getGroupList();
+      vm.gettagList();
+      if (vm.id) {
+        vm.$api(`one/getArticle`, {
+          id: Number(vm.id)
+        })
+          .then(r => {
+            vm.title = r.title
+            vm.groupVal = r.groupId
+            vm.tagVal = r.targetId
+            vm.articleContent = r.infoValue
+          })
+          .catch(e => {});
+      }
+    });
   },
   name: "addArticle",
   components: {
@@ -71,7 +76,8 @@ export default {
       tagList: [],
       articleContent: "",
       info: "",
-      infoValue: ""
+      infoValue: "",
+      id: this.$route.query.id || null
     };
   },
   methods: {
@@ -79,10 +85,39 @@ export default {
       this.infoValue = v;
       this.info = r;
     },
+    getGroupList() {
+      this.$api(`one/getGroupList`).then(r => (this.groupList = r));
+    },
+    gettagList() {
+      this.$api(`one/getTagList`).then(r => (this.tagList = r));
+    },
     commit() {
       if (!this.title) return Message.error("请输入标题！");
       if (!this.groupVal) return Message.error("请选择分组！");
       if (!this.tagVal) return Message.error("请选择标签！");
+      this.$http(this.id ? `one/updateArticle` : `one/addArticle`, this.id ? {
+        id:this.id,
+        title: this.title,
+        groupId: this.groupVal,
+        targetId: this.tagVal,
+        info: this.info,
+        infoValue: this.infoValue
+      } :{
+        title: this.title,
+        groupId: this.groupVal,
+        targetId: this.tagVal,
+        info: this.info,
+        infoValue: this.infoValue
+      }).then(r => {
+        if (r) {
+          Message({
+            message: this.id ? '修改成功！' :"添加成功！",
+            type: "success",
+            duration: 1000
+          });
+          return this.$goto("/");
+        }
+      });
     }
   }
 };

@@ -29,7 +29,7 @@ instance.interceptors.request.use((config) => {
   if (config.method == 'get' || config.method == 'delete') {
     config.params = {
       ...config.params,
-      timestamp: (new Date()).valueOf() /*解决IE - GET请求缓存问题*/
+      ts: (new Date()).valueOf() /*解决IE - GET请求缓存问题*/
     }
   }
   return config
@@ -141,7 +141,7 @@ export const $api = (url, params) => {
  */
 export const $http = (url, params) => {
   return new Promise((res, rej) => {
-    instance.post(url, params)
+    instance.post(url, JSON.stringify(params))
       .then(data => {
         res(data)
       })

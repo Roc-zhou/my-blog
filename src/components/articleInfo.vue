@@ -18,17 +18,49 @@
 </template>
 
 <script>
+import { MessageBox } from "element-ui";
 import "mavon-editor/dist/css/index.css";
 export default {
+  components: {
+    MessageBox
+  },
   beforeRouteEnter(to, from, next) {
-    return next(vm => {});
+    return next(vm => {
+      if (!/^\d+$/.test(vm.id)) {
+        return vm.$goto('/')
+      }
+      vm.$api(`one/getArticle`, {
+        id: Number(vm.id)
+      })
+        .then(r => {
+          if (Object.keys(r).length === 0) {
+            return MessageBox({
+              title:'警告',
+              message:'请正常查看浏览！！！',
+              type:'error',
+              confirmButtonClass:'我错了',
+              closeOnClickModal:false,
+              closeOnPressEscape:false,
+              showClose:false,
+            }).then(action => {
+              vm.$goto('/')
+            })
+          }
+          vm.date = r.createTime
+          vm.num = r.num
+          vm.articleTitle = r.title
+          vm.info = r.info
+        })
+        .catch(e => {});
+    });
   },
   name: "articleInfo",
   data() {
     return {
-      date: "2019-04-08 23:56:41",
-      num: 123,
-      articleTitle: "这是文章标题这是文章标题这是文章标题这是文章",
+      id:this.$route.params.id || null,
+      date: "",
+      num: null,
+      articleTitle: "",
       info: ""
     };
   }

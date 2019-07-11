@@ -6,10 +6,7 @@
           <div class="tag_top justify-start items-center flex-wrap">
             <i class="tag_icon"></i>
             <span class="active">全部</span>
-            <span>前端</span>
-            <span>微信</span>
-            <span>服务器</span>
-            <span>其他</span>
+            <span v-for="(x,index) in groupList" :key="index">{{x.groupName}}</span>
           </div>
           <router-view></router-view>
         </div>
@@ -56,17 +53,26 @@
 import page from "../templete/page";
 export default {
   beforeRouteEnter(to, from, next) {
-    return next(vm => {});
+    return next(vm => {
+      vm.getGroupList()
+    });
   },
   name: "article_con",
   components: {
     page
   },
   data() {
-    return {};
+    return {
+      groupList: []
+    };
   },
   methods: {
-    changeone() {}
+    changeone() {},
+    getGroupList() {
+      return this.$api(`one/getGroupList`).then(r => {
+        this.groupList = r
+      });
+    }
   }
 };
 </script>
@@ -93,7 +99,7 @@ export default {
 .tag_icon {
   width: 32px;
   height: 32px;
-  background-image: url('../assets/public/Images/tag.png');
+  background-image: url("../assets/public/Images/tag.png");
   background-size: 100% 100%;
   margin-right: 20px;
 }
