@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="con">
-      <router-view></router-view>
+      <router-view :scrollTop="scrollTop"></router-view>
     </div>
     <div class="footer justify-center items-center flex-column">
       <p>© 2018 - 2019 @AB+ 版权所有</p>
@@ -24,10 +24,14 @@
         </p>
       </div>
     </div>
+    <div class="backTop animates" v-if="fixedType" :class="fixedType ? 'slideInUp' : ''" >
+      <Button icon="el-icon-caret-top" circle @click="backTop"></Button>
+    </div>
   </div>
 </template>
 
 <script>
+import { Button } from "element-ui";
 export default {
   beforeRouteEnter(to, from, next) {
     return next(vm => {
@@ -45,13 +49,50 @@ export default {
   name: "home-main",
   data() {
     return {
-      menu: 1
+      menu: 1,
+      scrollTop: 0,
+      fixedType:false
     };
+  },
+  components: {
+    Button,
   },
   watch: {
     ["$route.path"](n, o) {
       this.menu = n === "/" ? 1 : n === "/article" ? 2 : n === "/about" ? 3 : 1;
     }
+  },
+  methods: {
+    getScrollTop() {
+      return (
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop
+      );
+    },
+    setScrollTop(scroll_top) {
+      document.documentElement.scrollTop = scroll_top;
+      // window.pageYOffset = scroll_top;
+      document.body.scrollTop = scroll_top;
+    },
+    scrollTo(e) {
+      this.scrollTop = this.getScrollTop();
+      return (this.fixedType = this.scrollTop > 100);
+    },
+    backTop() {
+      return this.setScrollTop(0)
+    }
+  },
+  created() {
+    return window.addEventListener
+      ? window.addEventListener("scroll", this.scrollTo)
+      : window.attachEvent("scroll", this.scrollTo);
+  },
+  destroyed() {
+    // 销毁绑定在window的事件
+    return window.removeEventListener
+      ? window.removeEventListener("scroll", this.scrollTo)
+      : window.detachEvent("scroll", this.scrollTo);
   }
 };
 </script>
@@ -111,5 +152,11 @@ export default {
 }
 .yq a:hover {
   color: #fff;
+}
+.backTop {
+  position: fixed;
+  bottom: 100px;
+  right: 40px;
+
 }
 </style>
