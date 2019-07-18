@@ -18,38 +18,39 @@
 </template>
 
 <script>
-import { MessageBox } from "element-ui";
-import "mavon-editor/dist/css/index.css";
+import "mavon-editor/dist/highlightjs/styles/atom-one-dark.min.css";
+// import "mavon-editor/dist/css/index.css";
+// import "../assets/public/StyleSheet/github-markdown.min.css";
 export default {
-  components: {
-    MessageBox
-  },
   beforeRouteEnter(to, from, next) {
     return next(vm => {
       if (!/^\d+$/.test(vm.id)) {
-        return vm.$goto('/')
+        return vm.$goto("/");
       }
+      vm.$api(`one/addInfoNum`, { id: vm.id });
       vm.$api(`one/getArticle`, {
         id: Number(vm.id)
       })
         .then(r => {
           if (Object.keys(r).length === 0) {
-            return MessageBox({
-              title:'警告',
-              message:'请正常查看浏览！！！',
-              type:'error',
-              confirmButtonClass:'我错了',
-              closeOnClickModal:false,
-              closeOnPressEscape:false,
-              showClose:false,
-            }).then(action => {
-              vm.$goto('/')
-            })
+            return vm
+              .$msgbox({
+                title: "警告",
+                message: "请正常查看浏览！！！",
+                type: "error",
+                confirmButtonClass: "我错了",
+                closeOnClickModal: false,
+                closeOnPressEscape: false,
+                showClose: false
+              })
+              .then(action => {
+                vm.$goto("/");
+              });
           }
-          vm.date = r.createTime
-          vm.num = r.num
-          vm.articleTitle = r.title
-          vm.info = r.info
+          vm.date = vm.$util.formatDate(r.createTime);
+          vm.num = r.num;
+          vm.articleTitle = r.title;
+          vm.info = r.info;
         })
         .catch(e => {});
     });
@@ -57,7 +58,7 @@ export default {
   name: "articleInfo",
   data() {
     return {
-      id:this.$route.params.id || null,
+      id: this.$route.params.id || null,
       date: "",
       num: null,
       articleTitle: "",
@@ -99,6 +100,10 @@ header h2 {
   margin: 20px 0 0 0;
 }
 .articleInfo >>> .markdown-body pre {
-  padding: 0;
+  padding: 15px 0;
+}
+.articleInfo >>> .markdown-body .hljs {
+  border-radius: 8px;
+  padding: 15px;
 }
 </style>

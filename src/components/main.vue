@@ -5,7 +5,7 @@
         <img src="../assets/public/Images/logo.png" alt />
         <div class="header_menu justify-center items-center">
           <p :class="menu === 1 ? 'selectd' : ''" @click.stop="$goto('/');menu=1">首页</p>
-          <p :class="menu === 2 ? 'selectd' : ''" @click.stop="$goto('/article');menu=2">目录</p>
+          <p :class="menu === 2 ? 'selectd' : ''" @click.stop="$goto('/article/0');menu=2">目录</p>
           <p :class="menu === 3 ? 'selectd' : ''" @click.stop="$goto('/about');menu=3">关于</p>
           <p @click.stop="$goto('https://github.com/Roc-zhou','open',false)">Github</p>
         </div>
@@ -19,8 +19,8 @@
       <div class="justify-center yq">
         <p>友情链接：</p>
         <p>
-          <a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" title="百度">百度</a>
-          <a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" title="百度">百度</a>
+          <!-- <a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" title="百度">百度</a> -->
+          <!-- <a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" title="百度">百度</a> -->
         </p>
       </div>
     </div>

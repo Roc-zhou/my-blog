@@ -5,10 +5,10 @@
         <div class="con_left flex-column items-center">
           <div class="tag_top justify-start items-center flex-wrap">
             <i class="tag_icon"></i>
-            <span class="active">全部</span>
-            <span v-for="(x,index) in groupList" :key="index">{{x.groupName}}</span>
+            <span :class="type === 'all' ? 'active' : ''" @click.stop="type = 0">全部</span>
+            <span v-for="(x,index) in groupList" :key="index" @click.stop="type = x.id" :class="type === x.id ? 'active' : ''">{{x.groupName}}</span>
           </div>
-          <router-view></router-view>
+          <router-view :typeValue="type"></router-view>
         </div>
         <div class="con_right flex-column">
           <div class="right_box flex-column">
@@ -54,7 +54,7 @@ import page from "../templete/page";
 export default {
   beforeRouteEnter(to, from, next) {
     return next(vm => {
-      vm.getGroupList()
+      vm.getGroupList();
     });
   },
   name: "article_con",
@@ -63,14 +63,20 @@ export default {
   },
   data() {
     return {
-      groupList: []
+      groupList: [],
+      type: Number(this.$route.params.type)
     };
+  },
+  watch: {
+    type(n,o){
+      this.$goto(`/article/${n}`)
+    }
   },
   methods: {
     changeone() {},
     getGroupList() {
       return this.$api(`one/getGroupList`).then(r => {
-        this.groupList = r
+        this.groupList = r;
       });
     }
   }

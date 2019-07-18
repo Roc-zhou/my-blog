@@ -15,8 +15,8 @@
     "element-ui": "^2.10.1",
     "jquery": "^3.4.1",
     "mavon-editor": "^2.7.5",
-    "rz-methods": "^1.0.1",
-    "rz-ui": "^1.0.1",
+    "rz-methods": "^1.0.2",
+    "rz-ui": "^1.0.3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.1.1"

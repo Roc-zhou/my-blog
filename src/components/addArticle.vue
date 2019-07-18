@@ -19,18 +19,22 @@
           </Select>
         </div>
       </div>
-      <div class="con">
+      <div class="center justify-start items-center" style="margin-top:10px;">
+        <span style="white-space: nowrap;">摘要：</span>
+        <Input v-model="abs" placeholder="请输入内容" :clearable="true"></Input>
+      </div>
+      <div class="con" style="white-space: normal;">
         <mavon-editor
           v-model="articleContent"
           @change="changeMd"
-          :ishljs="true"
           style="height:700px"
+          :tabSize="2"
           :codeStyle="'dark'"
         />
       </div>
       <div class="footerBtn">
         <Button @click.stop="$goto().back()">取消</Button>
-        <Button type="primary" @click.stop="commit">主要按钮</Button>
+        <Button type="primary" @click.stop="commit">提交</Button>
       </div>
     </div>
   </div>
@@ -50,10 +54,11 @@ export default {
           id: Number(vm.id)
         })
           .then(r => {
-            vm.title = r.title
-            vm.groupVal = r.groupId
-            vm.tagVal = r.targetId
-            vm.articleContent = r.infoValue
+            vm.title = r.title;
+            vm.groupVal = r.groupId;
+            vm.tagVal = r.targetId;
+            vm.articleContent = r.infoValue;
+            vm.abs = r.abs;
           })
           .catch(e => {});
       }
@@ -77,13 +82,15 @@ export default {
       articleContent: "",
       info: "",
       infoValue: "",
-      id: this.$route.query.id || null
+      id: this.$route.query.id || null,
+      abs: ""
     };
   },
   methods: {
     changeMd(v, r) {
       this.infoValue = v;
       this.info = r;
+      console.log(r);
     },
     getGroupList() {
       this.$api(`one/getGroupList`).then(r => (this.groupList = r));
@@ -95,23 +102,30 @@ export default {
       if (!this.title) return Message.error("请输入标题！");
       if (!this.groupVal) return Message.error("请选择分组！");
       if (!this.tagVal) return Message.error("请选择标签！");
-      this.$http(this.id ? `one/updateArticle` : `one/addArticle`, this.id ? {
-        id:this.id,
-        title: this.title,
-        groupId: this.groupVal,
-        targetId: this.tagVal,
-        info: this.info,
-        infoValue: this.infoValue
-      } :{
-        title: this.title,
-        groupId: this.groupVal,
-        targetId: this.tagVal,
-        info: this.info,
-        infoValue: this.infoValue
-      }).then(r => {
+      this.$http(
+        this.id ? `one/updateArticle` : `one/addArticle`,
+        this.id
+          ? {
+              id: this.id,
+              title: this.title,
+              groupId: this.groupVal,
+              targetId: this.tagVal,
+              info: this.info,
+              infoValue: this.infoValue,
+              abs: this.abs
+            }
+          : {
+              title: this.title,
+              groupId: this.groupVal,
+              targetId: this.tagVal,
+              info: this.info,
+              infoValue: this.infoValue,
+              abs: this.abs
+            }
+      ).then(r => {
         if (r) {
           Message({
-            message: this.id ? '修改成功！' :"添加成功！",
+            message: this.id ? "修改成功！" : "添加成功！",
             type: "success",
             duration: 1000
           });
@@ -124,8 +138,8 @@ export default {
 </script>
 <style scoped>
 .box {
-  width: 1200px;
-  padding: 50px 0;
+  width: 1400px;
+  padding: 20px 0;
 }
 .con {
   margin: 30px 0;

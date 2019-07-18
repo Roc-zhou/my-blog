@@ -12,7 +12,7 @@ export default [{
       component: () => import('./home'),
     },
     {
-      path: 'article',
+      path: 'article/:type',
       component: () => import('./article'),
       children: [
         {

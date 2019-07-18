@@ -1,48 +1,95 @@
 <template>
   <div class="articleList">
-    <div class="articleList_list" v-for="x in 10">
+    <div class="articleList_list" v-for="(x,index) in list" :key="index">
       <!-- :class="x > 5 ? 'animates ani' : ''" data-animation="fadeInUp" -->
-      <h1 @click.stop="$goto('/article/list/1')">聊聊中国的通信行业：从“七国八制”到“中华”脊梁</h1>
+      <h1 @click.stop="$goto(`/article/info/${x.id}`)">{{x.title}}</h1>
       <div class="justify-start">
-        <p class="timeC justify-start items-center">2019-05-25</p>
-        <p class="tagC justify-start items-center">Html</p>
+        <p class="timeC justify-start items-center">最近修改时间：{{$util.formatDate(x.createTime)}}</p>
+        <p class="tagC justify-start items-center">{{x.targeName}}</p>
       </div>
-      <p class="abs">致敬中国通信行业，致敬华为、中兴</p>
+      <p class="abs">{{x.abs}}</p>
       <p class="read_btn justify-start">
-        <span class="cursor-pointer" @click.stop="$goto('/article/list/1')">阅读更多</span>
+        <span class="cursor-pointer" @click.stop="$goto(`/article/info/${x.id}`)">阅读更多</span>
       </p>
     </div>
 
-    <div class="pageBox justify-center items-center">
-      <page :page-index="1" :total="10" :page-size="8" @change="changeone"></page>
+    <div class="articleList_list" v-if="list.length === 0">
+      <p>正在努力更新中...</p>
+    </div>
+    <Loading v-if="loading" class="fiexdBox"></Loading>
+    <div class="pageBox justify-center items-center" v-if="total > pageSize">
+      <Page :page-index="pageNo" :total="total" :page-size="pageSize" @change="changeone"></Page>
     </div>
   </div>
 </template>
 
 <script>
-import page from "../templete/page";
+import Page from "../templete/page";
+import Loading from "../templete/svgLoading";
 export default {
   beforeRouteEnter(to, from, next) {
-    return next(vm => {});
+    return next(vm => {
+      vm.getList();
+    });
   },
   name: "articleListList",
   components: {
-    page
+    Page,
+    Loading
+  },
+  props: {
+    typeValue: {
+      type: Number,
+      default: 0
+    }
+  },
+  watch: {
+    typeValue(n, o) {
+      this.getList();
+    }
   },
   data() {
-    return {};
+    return {
+      pageNo: 1,
+      pageSize: 8,
+      total: null,
+      list: [],
+      loading: false
+    };
   },
   mounted() {
     this.$isScroll.init(".animates");
   },
   methods: {
-    changeone() {}
+    changeone(e) {
+      this.pageNo = e;
+      this.getList();
+    },
+    getList() {
+      this.loading = true;
+      this.$api(`one/getArticleList`, {
+        pageSize: this.pageSize,
+        pageNo: this.pageNo,
+        type: this.typeValue
+      })
+        .then(r => {
+          this.loading = false;
+          this.list = r.data;
+          this.total = r.total;
+        })
+        .catch(e => {
+          this.loading = false;
+        });
+    }
   }
 };
 </script>
 <style scoped>
 .ani {
   opacity: 0;
+}
+.articleList {
+  position: relative;
 }
 .articleList_list {
   padding: 10px 20px;
@@ -103,5 +150,10 @@ export default {
 }
 .pageBox {
   padding: 20px 0;
+}
+.fiexdBox {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
