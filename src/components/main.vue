@@ -39,7 +39,7 @@ export default {
       vm.menu =
         routerPath === "/"
           ? 1
-          : routerPath === "/article"
+          : routerPath === "/article/0"
           ? 2
           : routerPath === "/about"
           ? 3

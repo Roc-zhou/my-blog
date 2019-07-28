@@ -2,14 +2,14 @@
   <div class="articleList">
     <div class="articleList_list" v-for="(x,index) in list" :key="index">
       <!-- :class="x > 5 ? 'animates ani' : ''" data-animation="fadeInUp" -->
-      <h1 @click.stop="$goto(`/article/info/${x.id}`)">{{x.title}}</h1>
+      <h1 @click.stop="$goto(`/article/${typeValue}/info/${x.id}`)">{{x.title}}</h1>
       <div class="justify-start">
         <p class="timeC justify-start items-center">最近修改时间：{{$util.formatDate(x.createTime)}}</p>
         <p class="tagC justify-start items-center">{{x.targeName}}</p>
       </div>
       <p class="abs">{{x.abs}}</p>
       <p class="read_btn justify-start">
-        <span class="cursor-pointer" @click.stop="$goto(`/article/info/${x.id}`)">阅读更多</span>
+        <span class="cursor-pointer" @click.stop="$goto(`/article/${typeValue}/info/${x.id}`)">阅读更多</span>
       </p>
     </div>
 

@@ -4,11 +4,44 @@
       <div class="about_me">
         <h2>关于我</h2>
         <ul>
-          <!-- <li>90后，2016年硕士毕业于 华中科技大学 电子信息工程专业，现从事IT类工作</li>
-          <li>目前在南京栖息，天天被业务折腾得死去活来的同时依然保有对各项技术热忱的追求</li>
-          <li>参加工作以后越来越理解交流与分享的重要性，我在不停汲取大家宝贵经验的同时，也想回馈自己的所学所感给读者</li>
-          <li>本站主要关注但不限于 虚拟化、容器化、API化和微服务化的WEB技术</li>
-          <li>本站主要分享 务实、能看懂、读者可复现 的原创文章</li> -->
+          <li>90后，一个从大学就开始入坑计算机应用专业的青年，现从事IT行业，一名前端工程师</li>
+          <li>目前在北京（离家比较近），每天都是不停的代码、学习</li>
+          <li>本站主要记录自己日常工作中问题的处理方法、以及技术的分享、工具的使用等等</li>
+        </ul>
+        <p class="line"></p>
+        <h2>联系方式</h2>
+        <ul>
+          <li>
+            <span>微信：</span>13031902163
+          </li>
+          <li>
+            <span>QQ：</span>1137938565
+          </li>
+
+          <li>
+            <span>简书：</span>
+
+            <a
+              href="https://www.jianshu.com/u/644a4156fbfc"
+              target="_blank"
+            >https://www.jianshu.com/u/644a4156fbfc</a>
+          </li>
+        </ul>
+        <p class="line"></p>
+        <h2>爱好</h2>
+        <ul>
+          <li>阅读</li>
+          <li>电影</li>
+          <li>DIY（暂时没时间）</li>
+          <li>游戏（吃鸡、王者、LOL...）</li>
+          <li>外设</li>
+        </ul>
+        <p class="line"></p>
+        <h2>关于博客</h2>
+        <ul>
+          <li>博客使用技术：Vue+Node-koa 搭建，采用前后端分离模式。</li>
+          <li>数据库：mysql</li>
+          <li>markdown书写、html样式渲染。</li>
         </ul>
       </div>
     </div>
@@ -35,6 +68,9 @@ export default {
   height: 100%;
   overflow: hidden;
 }
+h2 {
+  font-size: 30px;
+}
 .ab_con {
   background: #fff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -42,7 +78,23 @@ export default {
   padding: 20px;
 }
 .about_me ul {
-  margin: 0 20px;
-  font-size: 14px;
+  margin: 20px 20px;
+  font-size: 16px;
+}
+.line {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 30px 0;
+}
+ul a {
+  color: #000;
+}
+ul a:hover {
+  color: #38b7ea;
+  text-decoration: underline;
+}
+ul li span {
+  display: inline-block;
+  width: 60px;
 }
 </style>

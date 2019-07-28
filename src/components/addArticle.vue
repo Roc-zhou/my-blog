@@ -90,7 +90,6 @@ export default {
     changeMd(v, r) {
       this.infoValue = v;
       this.info = r;
-      console.log(r);
     },
     getGroupList() {
       this.$api(`one/getGroupList`).then(r => (this.groupList = r));
