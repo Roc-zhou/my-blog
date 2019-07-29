@@ -24,7 +24,7 @@
         </p>
       </div>
     </div>
-    <div class="backTop animates" v-if="fixedType" :class="fixedType ? 'slideInUp' : ''" >
+    <div class="backTop animates" v-if="fixedType" :class="fixedType ? 'slideInUp' : ''">
       <Button icon="el-icon-caret-top" circle @click="backTop"></Button>
     </div>
   </div>
@@ -39,7 +39,7 @@ export default {
       vm.menu =
         routerPath === "/"
           ? 1
-          : routerPath === "/article/0"
+          : routerPath.indexOf("/article/") !== -1
           ? 2
           : routerPath === "/about"
           ? 3
@@ -51,15 +51,22 @@ export default {
     return {
       menu: 1,
       scrollTop: 0,
-      fixedType:false
+      fixedType: false
     };
   },
   components: {
-    Button,
+    Button
   },
   watch: {
     ["$route.path"](n, o) {
-      this.menu = n === "/" ? 1 : n === "/article" ? 2 : n === "/about" ? 3 : 1;
+      this.menu =
+        n === "/"
+          ? 1
+          : n.indexOf("/article/") !== -1
+          ? 2
+          : n === "/about"
+          ? 3
+          : 1;
     }
   },
   methods: {
@@ -80,7 +87,7 @@ export default {
       return (this.fixedType = this.scrollTop > 100);
     },
     backTop() {
-      return this.setScrollTop(0)
+      return this.setScrollTop(0);
     }
   },
   created() {
@@ -157,6 +164,5 @@ export default {
   position: fixed;
   bottom: 100px;
   right: 40px;
-
 }
 </style>

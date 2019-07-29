@@ -37,7 +37,7 @@
           <li>外设</li>
         </ul>
         <p class="line"></p>
-        <h2>关于博客</h2>
+        <h2>关于博客</h2>
         <ul>
           <li>博客使用技术：Vue+Node-koa 搭建，采用前后端分离模式。</li>
           <li>数据库：mysql</li>
