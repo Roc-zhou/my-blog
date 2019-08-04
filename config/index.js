@@ -13,6 +13,7 @@ module.exports = {
     proxyTable: {
       '/sys': {
         target: 'http://192.168.1.3:3100',
+        target: 'https://www.zhouhaipeng.com',
         changeOrigin: true, // 是否跨域
         pathRewrite: {
           '^/': ''

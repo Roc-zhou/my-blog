@@ -2,7 +2,8 @@
   <div class="main">
     <div class="header items-center justify-center">
       <div class="header_con justify-between items-center">
-        <img src="../assets/public/Images/logo.png" alt />
+        <img src="../assets/public/Images/logo.png" alt @click.stop="$goto('/')" class="cursor-pointer"/>
+        <h1 style="display:none;">周海鹏的博客</h1>
         <div class="header_menu justify-center items-center">
           <p :class="menu === 1 ? 'selectd' : ''" @click.stop="$goto('/');menu=1">首页</p>
           <p :class="menu === 2 ? 'selectd' : ''" @click.stop="$goto('/article/0');menu=2">目录</p>
