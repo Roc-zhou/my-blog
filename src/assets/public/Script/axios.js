@@ -63,8 +63,8 @@ instance.interceptors.response.use((response) => {
 }, (err) => {
   // 对响应错误做点什么
   let message = ''
-  if (error && error.response) {
-    switch (error.response.status) {
+  if (err && err.response) {
+    switch (err.response.status) {
       case 400:
         message = '错误请求'
         break;
@@ -102,7 +102,7 @@ instance.interceptors.response.use((response) => {
         message = 'http版本不支持该请求'
         break;
       default:
-        message = `连接错误${error.response.status}`
+        message = `连接错误${err.response.status}`
     }
   } else {
     message = "连接到 服务器 失败"
