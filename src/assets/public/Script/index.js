@@ -2,11 +2,14 @@ import Vue from 'vue'
 import 'babel-polyfill'
 import 'rz-ui'
 import { $api, $http } from './axios'
+import vw from 'em-vw'
 import '../StyleSheet/animate.css'
 import isScroll from './isScroll'
 import util from 'rz-methods'
 import { MessageBox } from "element-ui";
 
+
+vw(10)
 
 Vue.config.productionTip = false
 
