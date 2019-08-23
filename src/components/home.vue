@@ -40,8 +40,8 @@ export default {
   },
   mounted() {
     this.$isScroll.init(".animates");
-    this.init();
-    this.animate();
+    // this.init();
+    // this.animate();
   },
   methods: {
     init() {

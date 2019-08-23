@@ -9,7 +9,7 @@ import util from 'rz-methods'
 import { MessageBox } from "element-ui";
 
 
-vw(10)
+// vw(10)
 
 Vue.config.productionTip = false
 

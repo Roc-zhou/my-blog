@@ -14,7 +14,7 @@
     </div>
 
     <div class="articleList_list" v-if="list.length === 0">
-      <p>正在努力更新中...</p>
+      <p style="font-size:18px">正在努力更新中...</p>
     </div>
     <Loading v-if="loading" class="fiexdBox"></Loading>
     <div class="pageBox justify-center items-center" v-if="total > pageSize">
