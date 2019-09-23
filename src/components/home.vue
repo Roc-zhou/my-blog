@@ -15,7 +15,7 @@
 
 <script>
 // const THREE = require("three");
-import THREE from '../assets/public/js/three.min.js'
+import THREE from "../assets/public/js/three.min.js";
 let SEPARATION = 100,
   AMOUNTX = 50,
   AMOUNTY = 50;
@@ -49,7 +49,7 @@ export default {
       container.id = "banner-canvas";
       // document.body.appendChild( container );
       document.getElementById("canvas_bg").appendChild(container);
-      document.getElementById("canvas_bg").style.height = '100%'
+      document.getElementById("canvas_bg").style.height = "100%";
       camera = new THREE.THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
@@ -143,43 +143,47 @@ export default {
 };
 </script>
 <style scoped>
-.home_bg {
-  width: 100%;
-  height: calc(100vh - 70px);
-  /* background-image: -webkit-linear-gradient(
+@media screen and (max-width: 800px) {
+}
+@media screen and (min-width: 800px) {
+  .home_bg {
+    width: 100%;
+    height: calc(100vh - 70px);
+    /* background-image: -webkit-linear-gradient(
       top,
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ),
     url(http://wx4.sinaimg.cn/large/006qOGxWgy1fwoy2d5smgj312w0pxmzw.jpg); */
-  background-color: #222;
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  text-align: center;
-  background-size: 100% 100%;
-  position: relative;
-}
-.home_con_a {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  color: #fff;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-.home_con_a p {
-  font-size: 20px;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  margin-bottom: 20px;
-}
-.home_con_a p:first-child {
-  font-size: 25px;
-  font-weight: bold;
-}
-#canvas_bg >>> #banner-canvas canvas {
-  width: 100% !important;
-  height: calc(100vh -70px) !important;
+    background-color: #222;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    text-align: center;
+    background-size: 100% 100%;
+    position: relative;
+  }
+  .home_con_a {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .home_con_a p {
+    font-size: 20px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    margin-bottom: 20px;
+  }
+  .home_con_a p:first-child {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  #canvas_bg >>> #banner-canvas canvas {
+    width: 100% !important;
+    height: calc(100vh -70px) !important;
+  }
 }
 </style>

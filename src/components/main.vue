@@ -2,7 +2,12 @@
   <div class="main">
     <div class="header items-center justify-center">
       <div class="header_con justify-between items-center">
-        <img src="../assets/public/Images/logo.png" alt @click.stop="$goto('/')" class="cursor-pointer"/>
+        <img
+          src="../assets/public/Images/logo.png"
+          alt
+          @click.stop="$goto('/')"
+          class="cursor-pointer"
+        />
         <h1 style="display:none;">周海鹏的博客</h1>
         <div class="header_menu justify-center items-center">
           <p :class="menu === 1 ? 'selectd' : ''" @click.stop="$goto('/');menu=1">首页</p>
@@ -105,65 +110,69 @@ export default {
 };
 </script>
 <style scoped>
-.main {
-  background-color: #f4f4f4;
-  min-width: 1300px;
+@media screen and (max-width: 800px) {
 }
-.header {
-  height: 80px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 2;
-  width: 100%;
-  background-color: #222;
-}
-.header_con {
-  width: 1200px;
-}
-.header_con img {
-  width: 140px;
-  height: 50px;
-}
-.header_menu p {
-  width: 110px;
-  color: #fff;
-  font-size: 14px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  margin-left: 10px;
-}
-.header_menu p:hover {
-  cursor: pointer;
-  background-color: #404040;
-}
-.selectd {
-  background-color: #404040;
-}
-.footer {
-  height: 70px;
-  background-color: #222;
-  color: #aaa;
-  font-size: 14px;
-}
-.con {
-  min-height: calc(100vh - 70px);
-}
-.yq {
-  margin-top: 10px;
-}
-.yq a {
-  color: inherit;
-  margin-right: 10px;
-  text-decoration: none;
-}
-.yq a:hover {
-  color: #fff;
-}
-.backTop {
-  position: fixed;
-  bottom: 100px;
-  right: 40px;
+@media screen and (min-width: 800px) {
+  .main {
+    background-color: #f4f4f4;
+    min-width: 1300px;
+  }
+  .header {
+    height: 80px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    background-color: #222;
+  }
+  .header_con {
+    width: 1200px;
+  }
+  .header_con img {
+    width: 140px;
+    height: 50px;
+  }
+  .header_menu p {
+    width: 110px;
+    color: #fff;
+    font-size: 14px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 10px;
+  }
+  .header_menu p:hover {
+    cursor: pointer;
+    background-color: #404040;
+  }
+  .selectd {
+    background-color: #404040;
+  }
+  .footer {
+    height: 70px;
+    background-color: #222;
+    color: #aaa;
+    font-size: 14px;
+  }
+  .con {
+    min-height: calc(100vh - 70px);
+  }
+  .yq {
+    margin-top: 10px;
+  }
+  .yq a {
+    color: inherit;
+    margin-right: 10px;
+    text-decoration: none;
+  }
+  .yq a:hover {
+    color: #fff;
+  }
+  .backTop {
+    position: fixed;
+    bottom: 100px;
+    right: 40px;
+  }
 }
 </style>
