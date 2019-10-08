@@ -152,7 +152,7 @@ export default {
     width: 140px;
     height: 50px;
   }
-  .header_menu p {
+  .header_menu p:not(.github) {
     width: 110px;
     color: #fff;
     font-size: 14px;
@@ -193,8 +193,15 @@ export default {
     bottom: 100px;
     right: 40px;
   }
+  svg path {
+    fill: #fff
+  }
+  .github {
+    margin-left: 20px;
+  }
   .github > * {
     width: 25px;
   }
 }
+
 </style>
